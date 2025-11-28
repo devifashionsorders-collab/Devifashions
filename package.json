@@ -1,0 +1,21 @@
+{
+  "name": "catalog-site",
+  "version": "1.0.0",
+  "description": "Simple product catalog with CSV upload, WhatsApp order links and sitemap",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.937.0",
+    "@aws-sdk/lib-storage": "^3.937.0",
+    "body-parser": "^1.20.3",
+    "csv-parser": "^3.2.0",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

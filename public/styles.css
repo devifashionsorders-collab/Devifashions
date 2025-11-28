@@ -1,0 +1,393 @@
+﻿/* GLOBAL STYLES */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #d8bfd8, #e3d4ff, #f7e4ff);
+  color: #333;
+}
+
+
+/* HEADER BANNER */
+.header-banner {
+  text-align: center;
+  padding: 20px;
+  background: #b92963;
+  color: rgb(240, 229, 7);
+  font-size: 22px;
+  font-weight: 600;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.notice-bar {
+  background: #f75990;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  border-radius: 6px;
+  width: 90%;
+  margin: 0 auto 20px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* GRID LAYOUT */
+#catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+  padding: 20px;
+  width: 95%;
+  margin: auto;
+}
+
+/* CARD STYLING */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* PRODUCT IMAGE */
+.card img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+/* PRODUCT TEXT */
+.card h3 {
+  margin: 8px 0;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.card p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn.whatsapp {
+  background: #25D366;
+  color: #fff;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.btn.whatsapp:hover {
+  background: #1ebe5d;
+}
+
+.btn.view {
+  background: #5b4b8a;
+  color: white;
+  margin-left: 8px;
+}
+
+.btn.view:hover {
+  background: #483575;
+}
+
+/* MOBILE RESPONSIVE FIXES */
+@media (max-width: 600px) {
+  .header-banner {
+    font-size: 18px;
+  }
+
+  #catalog {
+    grid-template-columns: 1fr;
+  }
+
+  .card img {
+    max-height: 250px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+    margin: 6px 0;
+  }
+}
+
+
+.site-header {
+  text-align: center;      /* Centers inline elements */
+  padding: 20px 0;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #25D366;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+
+  display: block;          /* Required for margin auto */
+  margin: 0 auto;          /* Centers the LOGO itself */
+}
+
+/* --- Catalog animations: paste into public/styles.css --- */
+
+/* initial hidden state for entrance animation */
+.card {
+  opacity: 0;
+  transform: translateY(18px) scale(0.995);
+  transition: transform 420ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease;
+  will-change: transform, opacity;
+}
+
+/* visible state applied by JS (staggered) */
+.card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* hover lift effect (keeps card visible state) */
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(22, 23, 24, 0.12);
+}
+
+/* image gentle zoom on hover (target the img inside card) */
+.card img {
+  transition: transform 420ms cubic-bezier(.2,.9,.3,1);
+  will-change: transform;
+  /* keep object-fit: cover for consistent crops */
+  object-fit: cover;
+}
+
+/* zoom image a bit when parent hovered */
+.card:hover img {
+  transform: scale(1.06);
+}
+
+/* subtle tilt on focus (keyboard accessibility) */
+.card:focus-within {
+  transform: translateY(-6px) scale(1.02);
+  outline: none;
+}
+
+/* Add a small stagger helper for images (optional shimmer) */
+.card .price, .card .meta, .card .btn {
+  transition: opacity 280ms ease, transform 280ms ease;
+  opacity: 0;
+  transform: translateY(6px);
+}
+.card.visible .price,
+.card.visible .meta,
+.card.visible .btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* optional: animated gradient background (uncomment if you want to enable)
+body {
+  background: linear-gradient(120deg, #faf0ff 0%, #f7fff4 50%, #fffaf6 100%);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+}
+@keyframes gradientMove {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+*/
+
+/* reduce motion preference respect: disable animations when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card img,
+  .card .price,
+  .card .meta,
+  .card .btn,
+  body { animation: none !important; transition: none !important; transform: none !important; }
+}
+
+
+.about-colorful {
+    max-width: 750px;
+    margin: 50px auto;
+    padding: 35px 25px;
+    text-align: center;
+
+    /* Vibrant gradient background */
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 35%, #fbc2eb 100%);
+
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+    /* Smooth fade-in animation */
+    animation: fadeIn 1s ease-in-out;
+}
+
+.about-colorful h2 {
+    font-size: 32px;
+    color: #4a0055;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.about-colorful h2 span {
+    color: #ff0066;
+    text-shadow: 0 2px 6px rgba(255, 0, 102, 0.3);
+}
+
+.about-colorful p {
+    font-size: 19px;
+    line-height: 1.8;
+    color: #4a0038;
+    font-weight: 500;
+}
+
+/* Animation for smooth appearance */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Header container */
+header {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb); 
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Logo styling */
+.logo {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    padding: 5px;
+    background: white;
+}
+
+/* Main banner text */
+.header-banner {
+    font-size: 20px;
+    font-weight: 700;
+    color: #4a003a;
+    padding: 12px 20px;
+
+    /* Vibrant gradient text box */
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    border-radius: 12px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* Notice bar under banner */
+.notice-bar {
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px 20px;
+
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+    color: #4a0044;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.brand-neon {
+  font-size: 50px;
+  font-weight: 500;
+  color: #f6f9f6;
+  text-align: center;
+
+  /* Add handwriting-style font */
+  font-family: "Pacifico", "Brush Script MT", cursive;
+
+  /* Slight spacing for handwritten effect */
+  letter-spacing: 1px;
+
+  /* Neon glow */
+  text-shadow:
+    0 0 4px #ff00e6,
+    0 0 8px #ff00e6,
+    0 0 16px #ff00e6,
+    0 0 32px #ff00e6;
+}
+
+
+.main-preview {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.thumb {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+/* Mini slider inside catalog card */
+.mini-slider { margin-bottom: 12px; }
+.mini-main {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.mini-thumbs {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.mini-thumbs img {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: .2s;
+}
+.mini-thumbs img.active {
+  border-color: #7D3C98;
+}
+.mini-thumbs img:hover { transform: scale(1.06); }
+
+
+
+

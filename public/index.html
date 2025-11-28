@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>My Catalog — Products</title>
+  <meta name="description" content="Browse our product catalog. Place orders via WhatsApp." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <img src="logo.jpeg" alt="Devi Fashions Logo" class="logo">
+    <h3 class="brand-neon">Devi Fashions</h3>
+
+    <div class="header-banner">
+        Welcome to Exclusive Saree Collections — Mysore Silk, Kanchipuram, Dola Silk & More!
+    </div>
+
+    <div class="notice-bar">
+        Order your favourite items instantly — just click the WhatsApp button!
+    </div>
+</header>
+
+
+  <main id="catalog" style="padding:18px;"></main>
+
+  <section class="about-colorful">
+    <h2>About <span>Devi Fashions</span></h2>
+    <p>
+        Devi Fashions is a boutique saree store offering curated South Indian traditional sarees,
+        designer sarees, soft silk, organza, georgette, and wedding collections. Discover our stunning range of Western Gowns — from elegant evening gowns to soft net party wear, satin flowy gowns, stylish cocktail dresses, and premium designer pieces.
+Perfect for birthdays, receptions, parties, and special occasions.
+        We focus on quality, handpicked materials, and customer satisfaction with doorstep delivery across India.
+    </p>
+  </section>
+
+  <footer>
+    <small>© <span id="year"></span> My Business</small>
+  </footer>
+
+  <script>
+    document.getElementById('year').innerText = new Date().getFullYear();
+  </script>
+  <script src="/app.js"></script>
+
+  <script>
+document.querySelectorAll('.thumb').forEach(img => {
+  img.addEventListener('click', () => {
+    document.getElementById('mainImage').src = img.src;
+  });
+});
+</script>
+
+
+  
+</body>
+</html>

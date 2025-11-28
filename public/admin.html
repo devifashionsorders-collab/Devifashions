@@ -1,0 +1,89 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Admin - Add Product</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .admin form label { display:block; margin:8px 0; }
+    .admin input, .admin textarea, .admin select { width:100%; padding:8px; box-sizing:border-box; }
+    .admin { max-width:700px; margin:20px auto; background:#fff; padding:18px; border-radius:8px; }
+  </style>
+</head>
+<body>
+  <header><h1 style="text-align:center">Admin - Add Product</h1></header>
+
+  <section class="admin">
+    <form id="addForm" enctype="multipart/form-data">
+      <label>Product name
+        <input name="name" required />
+      </label>
+
+      <label>SKU
+        <input name="sku" required />
+      </label>
+
+      <label>Category
+        <select name="category" id="categorySelect">
+          <option value="Uncategorized">Uncategorized</option>
+          <option value="Silk">Silk</option>
+          <option value="Cotton">Cotton</option>
+          <option value="Designer">Designer</option>
+          <option value="Chiffon">Chiffon</option>
+          <option value="Other">Other</option>
+        </select>
+      </label>
+
+      <label>Price
+        <input name="price" />
+      </label>
+
+      <label>Description
+        <textarea name="description"></textarea>
+      </label>
+
+      <label>Image (file)
+        <input type="file" name="image" accept="image/*" />
+      </label>
+      <label>Images (up to 10)</label>
+<input type="file" name="images" accept="image/*" multiple />
+
+
+      <button type="submit">Add Product</button>
+    </form>
+
+    <hr/>
+
+    <h2>Bulk CSV upload</h2>
+    <p>CSV headers: <code>name,sku,description,price,imageUrl,category</code></p>
+    <form id="csvForm" enctype="multipart/form-data">
+      <input type="file" name="csvfile" accept=".csv" required />
+      <button>Upload CSV</button>
+    </form>
+
+    <div id="message"></div>
+    <p><a href="/">View Catalog</a></p>
+  </section>
+
+  <script>
+  document.getElementById('addForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target;
+    const formData = new FormData(f);
+    const res = await fetch('/api/products', { method: 'POST', body: formData });
+    const j = await res.json();
+    document.getElementById('message').innerText = j.ok ? 'Added: '+j.product.name : 'Error: '+(j.error||'unknown');
+  });
+
+  document.getElementById('csvForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.target;
+    const formData = new FormData(f);
+    const res = await fetch('/api/upload-csv', { method: 'POST', body: formData });
+    const j = await res.json();
+    document.getElementById('message').innerText = j.ok ? `CSV uploaded, added ${j.added}` : 'Error: '+(j.error||'unknown');
+  });
+  </script>
+</body>
+</html>
