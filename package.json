@@ -7,13 +7,13 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.937.0",
-    "@aws-sdk/lib-storage": "^3.937.0",
-    "body-parser": "^1.20.3",
+    "@aws-sdk/client-s3": "^3.946.0",
+    "@aws-sdk/lib-storage": "^3.946.0",
+    "body-parser": "^1.20.4",
     "cloudinary": "^2.8.0",
     "csv-parser": "^3.2.0",
     "dotenv": "^17.2.3",
-    "express": "^4.21.2",
+    "express": "^4.22.1",
     "multer": "^1.4.5-lts.1"
   },
   "keywords": [],
