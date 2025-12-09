@@ -1,4 +1,6 @@
+
 {
+  
   "name": "catalog-site",
   "version": "1.0.0",
   "description": "Simple product catalog with CSV upload, WhatsApp order links and sitemap",
