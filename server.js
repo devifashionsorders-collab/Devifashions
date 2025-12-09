@@ -12,9 +12,11 @@ const bodyParser = require('body-parser');
 const { S3Client } = require('@aws-sdk/client-s3');
 const { Upload } = require('@aws-sdk/lib-storage');
 
-const PORT = process.env.PORT || 3000;
+// server.js — top of file (replace your existing lines)
+const PORT = process.env.PORT || 8080;   // prefer 8080 on many PaaS, but 3000 is OK if you set EB env
 const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '';
 const SITE_URL = (process.env.SITE_URL || `http://localhost:${PORT}`).replace(/\/$/, '');
+
 
 const S3_BUCKET = process.env.S3_BUCKET || '';
 const S3_REGION = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || '';
